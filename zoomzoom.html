@@ -1,0 +1,45 @@
+<html>
+<script language="JavaScript">
+var num=16;
+var minSize=16;
+var maxSize=32;
+var minSpeed=4;
+var maxSpeed=16;
+var carX=new Array(num);
+var carY=new Array(num);
+var carSize=new Array(num);
+var carSpeed=new Array(num);
+for(var i=0;i<num;i++)
+{
+document.write('<div id="Car'+i+'" style="position:absolute;"><nobr><tt><b>　＿＿＿<br>＿|　　|＿<br>|　　　　|　＝３<br>￣◎￣◎￣</b></tt></nobr></div>');
+carSize[i]=Math.floor(Math.random()*(maxSize-minSize))+minSize;
+carX[i]=Math.floor(Math.random()*((document.body.clientWidth-carSize[i]*5)));
+carY[i]=Math.floor(Math.random()*((document.body.clientHeight-carSize[i]*3)));
+carSpeed[i]=Math.floor(Math.random()*(maxSpeed-minSpeed))+minSpeed;
+document.all("Car"+i).style.fontSize=carSize[i];
+document.all("Car"+i).style.color=Math.floor(Math.random()*0xffffff);
+document.all("Car"+i).style.left=carX[i];
+document.all("Car"+i).style.top=carY[i];
+}
+function moveCar()
+{
+for(var i=0;i<num;i++)
+{
+carX[i]-=carSpeed[i];
+carY[i]-=carSpeed[i];
+if(carX[i]<=-carSize[i]*5)
+{
+carSize[i]=Math.floor(Math.random()*(maxSize-minSize))+minSize;
+carX[i]=document.body.clientWidth;
+carY[i]=Math.floor(Math.random()*((document.body.clientHeight-carSize[i]*3)));
+carSpeed[i]=Math.floor(Math.random()*(maxSpeed-minSpeed))+minSpeed;
+document.all("Car"+i).style.fontSize=carSize[i];
+document.all("Car"+i).style.color=Math.floor(Math.random()*0xffffff);
+document.all("Car"+i).style.top=carY[i];
+}
+document.all("Car"+i).style.left=carX[i];
+}
+}
+setInterval(moveCar,10);
+</script>
+</html>
